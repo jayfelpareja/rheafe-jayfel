@@ -80,20 +80,20 @@ export const Details: React.FC = () => {
               <div>
                 <h4 className="font-serif text-lg text-stone-900 dark:text-stone-100 mb-2 flex items-center space-x-2">
                   <CheckSquare size={16} className="text-gold-300" />
-                  <span>Attire Code</span>
+                  <span>Elopement Wedding</span>
                 </h4>
                 <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed font-sans">
-                  <strong>Black Tie / Formal Garden.</strong> We kindly request that ladies wear formal floor-length or midi dresses, and gentlemen wear tuxedos or dark suits.
+                  We chose a simple elopement wedding, where only the groom and bride shared this sacred moment together before God. It was a private ceremony filled with love, prayer, and commitment.
                 </p>
               </div>
 
               <div>
                 <h4 className="font-serif text-lg text-stone-900 dark:text-stone-100 mb-2 flex items-center space-x-2">
                   <CheckSquare size={16} className="text-gold-300" />
-                  <span>With Love & Thanks</span>
+                  <span>Celebration</span>
                 </h4>
                 <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed font-sans">
-                  We are deeply grateful to everyone who traveled to the Amalfi Coast to celebrate with us. Your presence, laughter, and warm blessings made our day complete.
+                  There was no formal reception or large gathering, only a quiet celebration of vows exchanged between us. Our families were informed, but we kept the ceremony intimate and private as we begin our journey as one.
                 </p>
               </div>
             </motion.div>
