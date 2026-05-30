@@ -1,7 +1,12 @@
 import React from 'react';
-import { Heart, ArrowUp } from 'lucide-react';
+import { Heart, ArrowUp, Sun, Moon } from 'lucide-react';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  darkMode: boolean;
+  setDarkMode: (value: boolean) => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ darkMode, setDarkMode }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -25,7 +30,7 @@ export const Footer: React.FC = () => {
         </h2>
 
         {/* Romantic Quote */}
-        <blockquote className="max-w-md mx-auto mb-10">
+        <blockquote className="max-w-md mx-auto mb-6">
           <p className="font-serif italic text-sm md:text-base text-stone-500 dark:text-stone-400 leading-relaxed">
             “Therefore shall a man leave his father and his mother, and shall cleave unto his wife: and they shall be one flesh.”
           </p>
@@ -34,13 +39,23 @@ export const Footer: React.FC = () => {
           </cite>
         </blockquote>
 
+        {/* Theme Toggle Module */}
+        <div className="mb-10">
+          <button
+            onClick={() => setDarkMode(!darkMode)}
+            className="p-2.5 rounded-full border border-stone-200 dark:border-charcoal-800 text-stone-600 dark:text-gold-200 hover:bg-stone-100 dark:hover:bg-charcoal-800 hover:text-stone-900 dark:hover:text-white transition-all duration-300 cursor-pointer"
+            aria-label="Toggle Theme"
+          >
+            {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+        </div>
+
         {/* Social Icons / Hashtag */}
         <div className="flex flex-col items-center space-y-4 mb-12">
           <span className="font-sans text-xs uppercase tracking-widest text-stone-400 dark:text-stone-500 font-semibold">
-            #RheafeAndJayfel2026 <br></br>
+            #RheafeAndJayfel2026 <br />
             #April252026
           </span>
-
         </div>
 
         {/* Copyright & Sign-off */}

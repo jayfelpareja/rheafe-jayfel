@@ -31,8 +31,8 @@ function App() {
 
   return (
     <div className="min-h-screen bg-stone-50 dark:bg-charcoal-900 transition-colors duration-500 selection:bg-blush-200/50 dark:selection:bg-gold-300/20">
-      {/* Navigation */}
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+      {/* Navigation (Props Removed) */}
+      <Navbar />
 
       {/* Main Sections */}
       <main>
@@ -55,8 +55,8 @@ function App() {
         <Details />
       </main>
 
-      {/* Footer */}
-      <Footer />
+      {/* Footer (Theme Controls Added Here) */}
+      <Footer darkMode={darkMode} setDarkMode={setDarkMode} />
     </div>
   );
 }

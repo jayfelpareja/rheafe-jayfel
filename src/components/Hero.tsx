@@ -15,6 +15,7 @@ export const Hero: React.FC = () => {
 
   const [timeElapsed, setTimeElapsed] = useState({
     years: 0,
+    months: 0,
     days: 0,
     hours: 0,
     minutes: 0,
@@ -32,14 +33,16 @@ export const Hero: React.FC = () => {
     return () => clearInterval(bgTimer);
   }, []);
 
-  // Time elapsed count-up calculation
+  // Precise calendar time elapsed count-up calculation
   useEffect(() => {
     const calculateTimeElapsed = () => {
-      const difference = +new Date() - +weddingDate;
+      const now = new Date();
+      let differenceMs = now.getTime() - weddingDate.getTime();
 
-      if (difference <= 0) {
+      if (differenceMs <= 0) {
         setTimeElapsed({
           years: 0,
+          months: 0,
           days: 0,
           hours: 0,
           minutes: 0,
@@ -48,14 +51,39 @@ export const Hero: React.FC = () => {
         return;
       }
 
-      const totalDays = Math.floor(difference / (1000 * 60 * 60 * 24));
+      // Exact calendar calculation breakdown for accurate Years, Months, and Days
+      let targetYear = weddingDate.getFullYear();
+      let targetMonth = weddingDate.getMonth();
+      let targetDay = weddingDate.getDate();
+
+      let currentYear = now.getFullYear();
+      let currentMonth = now.getMonth();
+      let currentDay = now.getDate();
+
+      let years = currentYear - targetYear;
+      let months = currentMonth - targetMonth;
+      let days = currentDay - targetDay;
+
+      // Handle day borrowing context from previous calendar month boundary
+      if (days < 0) {
+        const previousMonthTotalDays = new Date(currentYear, currentMonth, 0).getDate();
+        days += previousMonthTotalDays;
+        months--;
+      }
+
+      // Handle month borrowing context from calendar year boundary
+      if (months < 0) {
+        months += 12;
+        years--;
+      }
 
       setTimeElapsed({
-        years: Math.floor(totalDays / 365),
-        days: totalDays % 365,
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
+        years,
+        months,
+        days,
+        hours: Math.floor((differenceMs / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((differenceMs / (1000 * 60)) % 60),
+        seconds: Math.floor((differenceMs / 1000) % 60),
       });
     };
 
@@ -64,6 +92,15 @@ export const Hero: React.FC = () => {
 
     return () => clearInterval(timer);
   }, []);
+
+  const counterUnits = [
+    { label: 'Years', value: timeElapsed.years },
+    { label: 'Months', value: timeElapsed.months },
+    { label: 'Days', value: timeElapsed.days },
+    { label: 'Hours', value: timeElapsed.hours },
+    { label: 'Mins', value: timeElapsed.minutes },
+    { label: 'Secs', value: timeElapsed.seconds },
+  ];
 
   return (
     <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
@@ -119,7 +156,7 @@ export const Hero: React.FC = () => {
           April 25, 2026 • 140 Kalayaan Ave, Diliman, Quezon City
         </motion.p>
 
-        {/* Counter */}
+        {/* Counter Block Track */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -130,15 +167,9 @@ export const Hero: React.FC = () => {
             Our Married Journey
           </span>
 
-          <div className="flex space-x-4 md:space-x-8">
-            {[
-              { label: 'Years', value: timeElapsed.years },
-              { label: 'Days', value: timeElapsed.days },
-              { label: 'Hours', value: timeElapsed.hours },
-              { label: 'Mins', value: timeElapsed.minutes },
-              { label: 'Secs', value: timeElapsed.seconds },
-            ].map((unit, index) => (
-              <div key={index} className="flex flex-col items-center">
+          <div className="grid grid-cols-3 gap-4 sm:flex sm:space-x-4 md:space-x-6">
+            {counterUnits.map((unit) => (
+              <div key={unit.label} className="flex flex-col items-center min-w-[64px] md:min-w-[80px]">
                 <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center rounded-lg shadow-lg mb-2 bg-black/45 backdrop-blur-md border border-white/10">
                   <span className="font-serif text-xl md:text-3xl font-medium text-gold-200">
                     {String(unit.value).padStart(2, '0')}
