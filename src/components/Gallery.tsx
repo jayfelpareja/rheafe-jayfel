@@ -138,8 +138,8 @@ export const Gallery: React.FC = () => {
                   setActiveImageIndex(null);
                 }}
                 className={`px-4 py-2 text-xs uppercase tracking-wider font-semibold rounded-lg transition-all duration-300 flex items-center space-x-2 border ${isSelected
-                  ? 'bg-stone-900 dark:bg-stone-100 text-white dark:text-neutral-900'
-                  : 'bg-stone-100 dark:bg-neutral-900 text-stone-600 dark:text-neutral-400'
+                    ? 'bg-stone-900 dark:bg-stone-100 text-white dark:text-neutral-900'
+                    : 'bg-stone-100 dark:bg-neutral-900 text-stone-600 dark:text-neutral-400'
                   }`}
               >
                 {category === 'All Memories' ? (
