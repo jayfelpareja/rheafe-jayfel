@@ -14,43 +14,77 @@ export const Gallery: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All Memories');
   const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
 
-  const categories = ['All Memories', 'The Ceremony', 'Portraits', 'Candid Moments', 'Daily Joys'];
+  const categories = ['All Memories', 'Civil Wedding', 'Just the two of us'];
 
   const items: GalleryItem[] = [
-    { id: 0, src: '/images/DSCF0929.jpg', category: 'The Ceremony', aspect: 'h-[360px]' },
-    { id: 1, src: '/images/DSCF0935.jpg', category: 'The Ceremony', aspect: 'h-[420px]' },
-    { id: 2, src: '/images/DSCF0957.jpg', category: 'The Ceremony', aspect: 'h-[300px]' },
-    { id: 3, src: '/images/DSCF1118.jpg', category: 'The Ceremony', aspect: 'h-[380px]' },
-    { id: 4, src: '/images/DSCF5136.jpg', category: 'The Ceremony', aspect: 'h-[320px]' },
-    { id: 5, src: '/images/DSCF1154.jpg', category: 'The Ceremony', aspect: 'h-[440px]' },
-    { id: 6, src: '/images/DSCF1033.jpg', category: 'The Ceremony', aspect: 'h-[340px]' },
-    { id: 7, src: '/images/DSCF0991.jpg', category: 'The Ceremony', aspect: 'h-[400px]' },
+    { id: 0, src: '/images/DSCF0929.jpg', category: 'Civil Wedding', aspect: 'h-[360px]' },
+    { id: 1, src: '/images/DSCF0935.jpg', category: 'Civil Wedding', aspect: 'h-[420px]' },
+    { id: 2, src: '/images/DSCF0957.jpg', category: 'Civil Wedding', aspect: 'h-[300px]' },
+    { id: 3, src: '/images/DSCF1118.jpg', category: 'Civil Wedding', aspect: 'h-[380px]' },
+    { id: 4, src: '/images/DSCF5136.jpg', category: 'Civil Wedding', aspect: 'h-[320px]' },
+    { id: 5, src: '/images/DSCF1154.jpg', category: 'Civil Wedding', aspect: 'h-[440px]' },
+    { id: 6, src: '/images/DSCF1033.jpg', category: 'Civil Wedding', aspect: 'h-[340px]' },
+    { id: 7, src: '/images/DSCF0991.jpg', category: 'Civil Wedding', aspect: 'h-[400px]' },
+    { id: 8, src: '/images/DSCF1015.jpg', category: 'Civil Wedding', aspect: 'h-[420px]' },
+    { id: 9, src: '/images/DSCF1022.jpg', category: 'Civil Wedding', aspect: 'h-[320px]' },
+    { id: 10, src: '/images/DSCF1154.jpg', category: 'Civil Wedding', aspect: 'h-[380px]' },
+    { id: 11, src: '/images/DSCF3785.jpg', category: 'Civil Wedding', aspect: 'h-[300px]' },
+    { id: 12, src: '/images/DSCF3805.jpg', category: 'Civil Wedding', aspect: 'h-[450px]' },
+    { id: 13, src: '/images/DSCF3816.jpg', category: 'Civil Wedding', aspect: 'h-[360px]' },
+    { id: 14, src: '/images/DSCF3818.jpg', category: 'Civil Wedding', aspect: 'h-[400px]' },
+    { id: 15, src: '/images/DSCF3919.jpg', category: 'Civil Wedding', aspect: 'h-[340px]' },
+    { id: 16, src: '/images/DSCF3954.jpg', category: 'Civil Wedding', aspect: 'h-[420px]' },
 
-    { id: 8, src: '/images/DSCF1015.jpg', category: 'Portraits', aspect: 'h-[420px]' },
-    { id: 9, src: '/images/DSCF1022.jpg', category: 'Portraits', aspect: 'h-[320px]' },
-    { id: 10, src: '/images/DSCF1154.jpg', category: 'Portraits', aspect: 'h-[380px]' },
-    { id: 11, src: '/images/DSCF3785.jpg', category: 'Portraits', aspect: 'h-[300px]' },
-    { id: 12, src: '/images/DSCF3805.jpg', category: 'Portraits', aspect: 'h-[450px]' },
-    { id: 13, src: '/images/DSCF3816.jpg', category: 'Portraits', aspect: 'h-[360px]' },
-    { id: 14, src: '/images/DSCF3818.jpg', category: 'Portraits', aspect: 'h-[400px]' },
-    { id: 15, src: '/images/DSCF3919.jpg', category: 'Portraits', aspect: 'h-[340px]' },
-    { id: 16, src: '/images/DSCF3954.jpg', category: 'Portraits', aspect: 'h-[420px]' },
+    { id: 17, src: '/images/DSCF5024.jpg', category: 'Civil Wedding', aspect: 'h-[320px]' },
+    { id: 18, src: '/images/DSCF5026.jpg', category: 'Civil Wedding', aspect: 'h-[380px]' },
+    { id: 19, src: '/images/DSCF5040.jpg', category: 'Civil Wedding', aspect: 'h-[420px]' },
+    { id: 20, src: '/images/DSCF5080.jpg', category: 'Civil Wedding', aspect: 'h-[300px]' },
+    { id: 21, src: '/images/DSCF5093.jpg', category: 'Civil Wedding', aspect: 'h-[400px]' },
+    { id: 22, src: '/images/DSCF5097.jpg', category: 'Civil Wedding', aspect: 'h-[360px]' },
+    { id: 23, src: '/images/DSCF5106.jpg', category: 'Civil Wedding', aspect: 'h-[440px]' },
+    { id: 24, src: '/images/DSCF5179.jpg', category: 'Civil Wedding', aspect: 'h-[340px]' },
 
-    { id: 17, src: '/images/DSCF5024.jpg', category: 'Candid Moments', aspect: 'h-[320px]' },
-    { id: 18, src: '/images/DSCF5026.jpg', category: 'Candid Moments', aspect: 'h-[380px]' },
-    { id: 19, src: '/images/DSCF5040.jpg', category: 'Candid Moments', aspect: 'h-[420px]' },
-    { id: 20, src: '/images/DSCF5080.jpg', category: 'Candid Moments', aspect: 'h-[300px]' },
-    { id: 21, src: '/images/DSCF5093.jpg', category: 'Candid Moments', aspect: 'h-[400px]' },
-    { id: 22, src: '/images/DSCF5097.jpg', category: 'Candid Moments', aspect: 'h-[360px]' },
-    { id: 23, src: '/images/DSCF5106.jpg', category: 'Candid Moments', aspect: 'h-[440px]' },
-    { id: 24, src: '/images/DSCF5179.jpg', category: 'Candid Moments', aspect: 'h-[340px]' },
+    { id: 25, src: '/images/couple1.jpg', category: 'Just the two of us', aspect: 'h-[440px]' },
+    { id: 26, src: '/images/couple2.jpg', category: 'Just the two of us', aspect: 'h-[440px]' },
+    { id: 27, src: '/images/couple3.jpg', category: 'Just the two of us', aspect: 'h-[360px]' },
+    { id: 28, src: '/images/couple4.jpg', category: 'Just the two of us', aspect: 'h-[320px]' },
+    { id: 29, src: '/images/couple5.jpg', category: 'Just the two of us', aspect: 'h-[400px]' },
+    { id: 30, src: '/images/couple6.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 31, src: '/images/couple7.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 32, src: '/images/couple8.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 33, src: '/images/couple9.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 34, src: '/images/couple10.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 35, src: '/images/couple11.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 36, src: '/images/couple12.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 37, src: '/images/couple13.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 38, src: '/images/couple14.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 39, src: '/images/couple15.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 40, src: '/images/couple16.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 41, src: '/images/couple17.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 42, src: '/images/couple18.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 43, src: '/images/couple19.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 44, src: '/images/couple20.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 45, src: '/images/couple21.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 46, src: '/images/couple22.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 47, src: '/images/couple23.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 48, src: '/images/couple24.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 49, src: '/images/couple25.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 50, src: '/images/couple26.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 51, src: '/images/couple27.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 52, src: '/images/couple28.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 53, src: '/images/couple29.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 54, src: '/images/couple30.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 55, src: '/images/couple31.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 56, src: '/images/couple32.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 57, src: '/images/couple33.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 58, src: '/images/couple34.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 59, src: '/images/couple35.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 60, src: '/images/couple36.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 61, src: '/images/couple37.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 62, src: '/images/couple38.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 63, src: '/images/couple39.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 64, src: '/images/couple40.jpg', category: 'Just the two of us', aspect: 'h-[340px]' }
 
-    { id: 25, src: '/images/received_1090347741694470.jpeg', category: 'Daily Joys', aspect: 'h-[380px]' },
-    { id: 26, src: '/images/received_1739237659879801.jpeg', category: 'Daily Joys', aspect: 'h-[440px]' },
-    { id: 27, src: '/images/received_2297727540427829.jpeg', category: 'Daily Joys', aspect: 'h-[360px]' },
-    { id: 28, src: '/images/received_1760022244390099.jpeg', category: 'Daily Joys', aspect: 'h-[320px]' },
-    { id: 29, src: '/images/received_2007543036294391.jpeg', category: 'Daily Joys', aspect: 'h-[400px]' },
-    { id: 30, src: '/images/Messenger_creation_de04f1a6-6454-40fa-8614-7b34616786da.jpeg', category: 'Daily Joys', aspect: 'h-[340px]' }
   ];
 
   const filteredItems =
@@ -113,15 +147,15 @@ export const Gallery: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 border-b border-stone-200/60 dark:border-neutral-800 pb-8">
           <div>
             <span className="font-sans text-xs uppercase tracking-widest text-stone-400 dark:text-neutral-500 font-bold block mb-2">
-              Visual Archives
+              Captured Moments
             </span>
             <h2 className="font-serif text-4xl md:text-6xl text-stone-900 dark:text-stone-100 tracking-tight">
-              Captured Moments
+              Our Story Together
             </h2>
           </div>
 
           <p className="font-sans text-sm text-stone-500 dark:text-neutral-400 max-w-xs md:text-right italic">
-            A curated grid of seamless snapshots. Select any capsule to unveil full-screen depth.
+            A simple collection of our most cherished memories. Tap any moment to relive it in full screen.
           </p>
         </div>
 

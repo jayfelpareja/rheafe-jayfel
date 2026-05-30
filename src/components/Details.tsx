@@ -58,7 +58,7 @@ export const Details: React.FC = () => {
               </div>
               <div>
                 <h3 className="font-serif text-2xl text-stone-900 dark:text-stone-100 mb-2">The Reception</h3>
-                <p className="font-serif italic text-sm text-gold-400 dark:text-gold-300 mb-4">6:30 PM - 11:30 PM</p>
+                <p className="font-serif italic text-sm text-gold-400 dark:text-gold-300 mb-4">Just the two of us</p>
                 <div className="space-y-2 text-stone-600 dark:text-stone-400 text-sm font-sans">
                   <p className="flex items-center space-x-2">
                     <MapPin size={14} className="text-stone-400" />
