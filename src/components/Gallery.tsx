@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, ZoomIn, Camera, Layers } from 'lucide-react';
+import { ZoomIn, Camera, Layers } from 'lucide-react'; // Cleaned unused imports
 
 interface GalleryItem {
   id: number;
@@ -12,7 +12,7 @@ interface GalleryItem {
 export const Gallery: React.FC = () => {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('All Memories');
-  const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
+  // Removed unused loadedImages state
 
   const categories = ['All Memories', 'Civil Wedding', 'Just the two of us'];
 
@@ -34,7 +34,6 @@ export const Gallery: React.FC = () => {
     { id: 14, src: '/images/DSCF3818.jpg', category: 'Civil Wedding', aspect: 'h-[400px]' },
     { id: 15, src: '/images/DSCF3919.jpg', category: 'Civil Wedding', aspect: 'h-[340px]' },
     { id: 16, src: '/images/DSCF3954.jpg', category: 'Civil Wedding', aspect: 'h-[420px]' },
-
     { id: 17, src: '/images/DSCF5024.jpg', category: 'Civil Wedding', aspect: 'h-[320px]' },
     { id: 18, src: '/images/DSCF5026.jpg', category: 'Civil Wedding', aspect: 'h-[380px]' },
     { id: 19, src: '/images/DSCF5040.jpg', category: 'Civil Wedding', aspect: 'h-[420px]' },
@@ -43,7 +42,6 @@ export const Gallery: React.FC = () => {
     { id: 22, src: '/images/DSCF5097.jpg', category: 'Civil Wedding', aspect: 'h-[360px]' },
     { id: 23, src: '/images/DSCF5106.jpg', category: 'Civil Wedding', aspect: 'h-[440px]' },
     { id: 24, src: '/images/DSCF5179.jpg', category: 'Civil Wedding', aspect: 'h-[340px]' },
-
     { id: 25, src: '/images/couple1.jpg', category: 'Just the two of us', aspect: 'h-[440px]' },
     { id: 26, src: '/images/couple2.jpg', category: 'Just the two of us', aspect: 'h-[440px]' },
     { id: 27, src: '/images/couple3.jpg', category: 'Just the two of us', aspect: 'h-[360px]' },
@@ -84,13 +82,11 @@ export const Gallery: React.FC = () => {
     { id: 62, src: '/images/couple38.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
     { id: 63, src: '/images/couple39.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
     { id: 64, src: '/images/couple40.jpg', category: 'Just the two of us', aspect: 'h-[340px]' }
-
   ];
 
-  const filteredItems =
-    selectedCategory === 'All Memories'
-      ? items
-      : items.filter((item) => item.category === selectedCategory);
+  const filteredItems = selectedCategory === 'All Memories'
+    ? items
+    : items.filter((item) => item.category === selectedCategory);
 
   const getCategoryCount = (category: string) => {
     if (category === 'All Memories') return items.length;
@@ -100,12 +96,8 @@ export const Gallery: React.FC = () => {
   const handleNext = (e?: React.MouseEvent) => {
     e?.stopPropagation();
     if (activeImageIndex !== null) {
-      const currentIndexInFiltered = filteredItems.findIndex(
-        (item) => item.id === activeImageIndex
-      );
-      const nextIndex =
-        (currentIndexInFiltered + 1) % filteredItems.length;
-
+      const currentIndexInFiltered = filteredItems.findIndex((item) => item.id === activeImageIndex);
+      const nextIndex = (currentIndexInFiltered + 1) % filteredItems.length;
       setActiveImageIndex(filteredItems[nextIndex].id);
     }
   };
@@ -113,13 +105,8 @@ export const Gallery: React.FC = () => {
   const handlePrev = (e?: React.MouseEvent) => {
     e?.stopPropagation();
     if (activeImageIndex !== null) {
-      const currentIndexInFiltered = filteredItems.findIndex(
-        (item) => item.id === activeImageIndex
-      );
-      const prevIndex =
-        (currentIndexInFiltered - 1 + filteredItems.length) %
-        filteredItems.length;
-
+      const currentIndexInFiltered = filteredItems.findIndex((item) => item.id === activeImageIndex);
+      const prevIndex = (currentIndexInFiltered - 1 + filteredItems.length) % filteredItems.length;
       setActiveImageIndex(filteredItems[prevIndex].id);
     }
   };
@@ -137,10 +124,7 @@ export const Gallery: React.FC = () => {
   }, [activeImageIndex, selectedCategory]);
 
   return (
-    <section
-      id="gallery"
-      className="py-24 md:py-32 bg-stone-50 dark:bg-neutral-950 transition-colors duration-300"
-    >
+    <section id="gallery" className="py-24 md:py-32 bg-stone-50 dark:bg-neutral-950 transition-colors duration-300">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
@@ -172,15 +156,11 @@ export const Gallery: React.FC = () => {
                   setActiveImageIndex(null);
                 }}
                 className={`px-4 py-2 text-xs uppercase tracking-wider font-semibold rounded-lg transition-all duration-300 flex items-center space-x-2 border ${isSelected
-                  ? 'bg-stone-900 dark:bg-stone-100 text-white dark:text-neutral-900'
-                  : 'bg-stone-100 dark:bg-neutral-900 text-stone-600 dark:text-neutral-400'
+                    ? 'bg-stone-900 dark:bg-stone-100 text-white dark:text-neutral-900'
+                    : 'bg-stone-100 dark:bg-neutral-900 text-stone-600 dark:text-neutral-400'
                   }`}
               >
-                {category === 'All Memories' ? (
-                  <Layers size={12} />
-                ) : (
-                  <Camera size={12} />
-                )}
+                {category === 'All Memories' ? <Layers size={12} /> : <Camera size={12} />}
                 <span>{category}</span>
                 <span className="text-[10px] ml-1 px-1.5 rounded-full bg-stone-200 dark:bg-neutral-800">
                   {getCategoryCount(category)}
@@ -190,10 +170,11 @@ export const Gallery: React.FC = () => {
           })}
         </div>
 
-        {/* Grid */}
+        {/* Grid View */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-[200px]">
           <AnimatePresence mode="popLayout">
-            {filteredItems.map((item, index) => (
+            {/* Cleaned 'index' out from map variables to pass the build */}
+            {filteredItems.map((item) => (
               <motion.div
                 key={item.id}
                 layout
@@ -217,19 +198,23 @@ export const Gallery: React.FC = () => {
           </AnimatePresence>
         </div>
 
-        {/* Lightbox */}
+        {/* Lightbox Modal */}
         <AnimatePresence>
           {activeImageIndex !== null && (
             <motion.div
               className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
               onClick={() => setActiveImageIndex(null)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
             >
-              <img
-                src={
-                  items.find((i) => i.id === activeImageIndex)?.src
-                }
+              <motion.img
+                src={items.find((i) => i.id === activeImageIndex)?.src}
                 alt=""
-                className="max-h-[80vh] max-w-[90vw] object-contain"
+                className="max-h-[80vh] max-w-[90vw] object-contain rounded-lg"
+                initial={{ scale: 0.95 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.95 }}
               />
             </motion.div>
           )}
