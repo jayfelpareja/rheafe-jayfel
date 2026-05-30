@@ -12,7 +12,9 @@ const bgImages = [
 
 export const Hero: React.FC = () => {
   const weddingDate = new Date('2026-04-25T13:00:00+08:00'); // Wedding date: April 25, 2026
+
   const [timeElapsed, setTimeElapsed] = useState({
+    years: 0,
     days: 0,
     hours: 0,
     minutes: 0,
@@ -26,6 +28,7 @@ export const Hero: React.FC = () => {
     const bgTimer = setInterval(() => {
       setCurrentBgIndex((prevIndex) => (prevIndex + 1) % bgImages.length);
     }, 6000);
+
     return () => clearInterval(bgTimer);
   }, []);
 
@@ -33,13 +36,23 @@ export const Hero: React.FC = () => {
   useEffect(() => {
     const calculateTimeElapsed = () => {
       const difference = +new Date() - +weddingDate;
+
       if (difference <= 0) {
-        setTimeElapsed({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        setTimeElapsed({
+          years: 0,
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0,
+        });
         return;
       }
 
+      const totalDays = Math.floor(difference / (1000 * 60 * 60 * 24));
+
       setTimeElapsed({
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        years: Math.floor(totalDays / 365),
+        days: totalDays % 365,
         hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
         minutes: Math.floor((difference / 1000 / 60) % 60),
         seconds: Math.floor((difference / 1000) % 60),
@@ -48,6 +61,7 @@ export const Hero: React.FC = () => {
 
     calculateTimeElapsed();
     const timer = setInterval(calculateTimeElapsed, 1000);
+
     return () => clearInterval(timer);
   }, []);
 
@@ -66,14 +80,15 @@ export const Hero: React.FC = () => {
             style={{ backgroundImage: `url('${bgImages[currentBgIndex]}')` }}
           />
         </AnimatePresence>
-        {/* Soft elegant overlays for premium feel and contrast */}
+
+        {/* Overlays */}
         <div className="absolute inset-0 bg-black/40 z-10" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 z-10" />
       </div>
 
       {/* Hero Content */}
       <div className="relative z-20 text-center px-6 max-w-4xl mx-auto flex flex-col items-center">
-        {/* Just Married Badge */}
+        {/* Badge */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -81,10 +96,10 @@ export const Hero: React.FC = () => {
           className="flex items-center space-x-2 text-gold-200 uppercase tracking-widest text-xs md:text-sm font-semibold mb-6 bg-black/45 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/15"
         >
           <Heart size={14} className="text-gold-300 animate-pulse-slow fill-current" />
-          <span>Just Married &bull; April 25, 2026</span>
+          <span>Just Married • April 25, 2026</span>
         </motion.div>
 
-        {/* Couple Names */}
+        {/* Names */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -94,17 +109,17 @@ export const Hero: React.FC = () => {
           Rheafe &amp; Jayfel
         </motion.h1>
 
-        {/* Date and Location */}
+        {/* Date */}
         <motion.p
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.6 }}
           className="font-serif italic text-lg md:text-2xl text-stone-200 tracking-wider mb-10 drop-shadow-sm"
         >
-          April 25, 2026 &bull; 140 Kalayaan Ave, Diliman, Quezon City
+          April 25, 2026 • 140 Kalayaan Ave, Diliman, Quezon City
         </motion.p>
 
-        {/* Count-Up Timer */}
+        {/* Counter */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -114,8 +129,10 @@ export const Hero: React.FC = () => {
           <span className="text-[10px] md:text-xs uppercase tracking-widest text-gold-200 font-semibold mb-4 bg-black/40 backdrop-blur-md px-4 py-1 rounded-full border border-white/10">
             Our Married Journey
           </span>
+
           <div className="flex space-x-4 md:space-x-8">
             {[
+              { label: 'Years', value: timeElapsed.years },
               { label: 'Days', value: timeElapsed.days },
               { label: 'Hours', value: timeElapsed.hours },
               { label: 'Mins', value: timeElapsed.minutes },
@@ -127,7 +144,7 @@ export const Hero: React.FC = () => {
                     {String(unit.value).padStart(2, '0')}
                   </span>
                 </div>
-                <span className="text-[10px] md:text-xs uppercase tracking-widest text-stone-300 font-semibold drop-shadow-xs">
+                <span className="text-[10px] md:text-xs uppercase tracking-widest text-stone-300 font-semibold">
                   {unit.label}
                 </span>
               </div>
@@ -135,7 +152,7 @@ export const Hero: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Call to Actions */}
+        {/* Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -148,6 +165,7 @@ export const Hero: React.FC = () => {
           >
             Our Story
           </a>
+
           <a
             href="#gallery"
             className="px-8 py-3.5 bg-black/30 text-white font-sans text-sm font-semibold rounded-full border border-white/20 hover:bg-white/10 transition-all shadow-sm hover:shadow-md hover:-translate-y-0.5 duration-300"
@@ -157,14 +175,16 @@ export const Hero: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Scroll Down Indicator */}
+      {/* Scroll Indicator */}
       <motion.div
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center cursor-pointer text-stone-300 hover:text-white transition-colors"
         onClick={() => document.getElementById('story')?.scrollIntoView({ behavior: 'smooth' })}
       >
-        <span className="text-[10px] uppercase tracking-widest font-semibold mb-2">Scroll</span>
+        <span className="text-[10px] uppercase tracking-widest font-semibold mb-2">
+          Scroll
+        </span>
         <ChevronDown size={18} />
       </motion.div>
     </section>
