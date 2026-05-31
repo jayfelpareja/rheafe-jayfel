@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ZoomIn, Camera, Layers } from 'lucide-react'; // Cleaned unused imports
+import { ZoomIn, Camera, Layers, ChevronDown } from 'lucide-react';
 
 interface GalleryItem {
   id: number;
@@ -12,7 +12,7 @@ interface GalleryItem {
 export const Gallery: React.FC = () => {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('All Memories');
-  // Removed unused loadedImages state
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   const categories = ['All Memories', 'Civil Wedding', 'Just the two of us'];
 
@@ -88,6 +88,9 @@ export const Gallery: React.FC = () => {
     ? items
     : items.filter((item) => item.category === selectedCategory);
 
+  // Dynamic layout display slicing setup
+  const displayedItems = isExpanded ? filteredItems : filteredItems.slice(0, 8);
+
   const getCategoryCount = (category: string) => {
     if (category === 'All Memories') return items.length;
     return items.filter((item) => item.category === category).length;
@@ -154,15 +157,23 @@ export const Gallery: React.FC = () => {
                 onClick={() => {
                   setSelectedCategory(category);
                   setActiveImageIndex(null);
+                  setIsExpanded(false); // Reset configuration logic to initial limit
                 }}
                 className={`px-4 py-2 text-xs uppercase tracking-wider font-semibold rounded-lg transition-all duration-300 flex items-center space-x-2 border ${isSelected
-                    ? 'bg-stone-900 dark:bg-stone-100 text-white dark:text-neutral-900'
-                    : 'bg-stone-100 dark:bg-neutral-900 text-stone-600 dark:text-neutral-400'
+                    ? 'bg-stone-900 border-stone-900 text-white dark:bg-stone-100 dark:border-stone-100 dark:text-neutral-900'
+                    : 'bg-stone-100 border-stone-200 text-stone-600 dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-400'
                   }`}
               >
                 {category === 'All Memories' ? <Layers size={12} /> : <Camera size={12} />}
                 <span>{category}</span>
-                <span className="text-[10px] ml-1 px-1.5 rounded-full bg-stone-200 dark:bg-neutral-800">
+
+                {/* Dynamically Styled Counter Badge */}
+                <span
+                  className={`text-[10px] ml-1 px-1.5 py-0.5 rounded-full font-bold transition-colors duration-300 ${isSelected
+                      ? 'bg-white text-stone-900 dark:bg-neutral-900 dark:text-stone-100'
+                      : 'bg-stone-200 text-stone-700 dark:bg-neutral-800 dark:text-neutral-300'
+                    }`}
+                >
                   {getCategoryCount(category)}
                 </span>
               </button>
@@ -173,14 +184,14 @@ export const Gallery: React.FC = () => {
         {/* Grid View */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-[200px]">
           <AnimatePresence mode="popLayout">
-            {/* Cleaned 'index' out from map variables to pass the build */}
-            {filteredItems.map((item) => (
+            {displayedItems.map((item) => (
               <motion.div
                 key={item.id}
                 layout
                 initial={{ opacity: 0, scale: 0.92 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.92 }}
+                transition={{ duration: 0.4 }}
                 onClick={() => setActiveImageIndex(item.id)}
                 className="relative group overflow-hidden rounded-xl cursor-pointer"
               >
@@ -197,6 +208,19 @@ export const Gallery: React.FC = () => {
             ))}
           </AnimatePresence>
         </div>
+
+        {/* Dynamic Action Trigger Container */}
+        {filteredItems.length > 8 && !isExpanded && (
+          <div className="flex justify-center mt-16">
+            <button
+              onClick={() => setIsExpanded(true)}
+              className="px-6 py-3 border border-stone-200 dark:border-neutral-800 rounded-xl font-sans text-xs uppercase tracking-widest text-stone-700 dark:text-neutral-300 font-semibold hover:bg-stone-900 hover:text-white dark:hover:bg-stone-100 dark:hover:text-neutral-900 transition-all duration-300 flex items-center space-x-2 shadow-sm cursor-pointer"
+            >
+              <span>See More Memories</span>
+              <ChevronDown size={14} className="mt-0.5 animate-bounce" />
+            </button>
+          </div>
+        )}
 
         {/* Lightbox Modal */}
         <AnimatePresence>
