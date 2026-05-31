@@ -30,7 +30,7 @@ export const LoveNotes: React.FC = () => {
       id: '2',
       name: 'Sherwin & Judith',
       relationship: 'Parents of the Groom',
-      message: "May your love grow deeper and stronger with each passing year. Watching you two build a life together has been our greatest joy. We are so honored to witness this beautiful union.",
+      message: "From the moment you found each other, we knew something beautiful had begun. May your love continue to grow with every passing year, bringing you endless happiness, strength, and countless cherished memories. We are truly blessed to witness and celebrate this wonderful union.",
       date: 'April 22, 2026',
     },
 
