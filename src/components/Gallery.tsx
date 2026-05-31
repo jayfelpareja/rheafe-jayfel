@@ -14,7 +14,7 @@ export const Gallery: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All Memories');
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
-  const categories = ['All Memories', 'Civil Wedding', 'Just the two of us'];
+  const categories = ['All Memories', 'Civil Wedding', 'Pre-Wedding', 'Just the two of us'];
 
   const items: GalleryItem[] = [
     { id: 0, src: '/images/DSCF0929.jpg', category: 'Civil Wedding', aspect: 'h-[360px]' },
@@ -81,7 +81,27 @@ export const Gallery: React.FC = () => {
     { id: 61, src: '/images/couple37.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
     { id: 62, src: '/images/couple38.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
     { id: 63, src: '/images/couple39.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
-    { id: 64, src: '/images/couple40.jpg', category: 'Just the two of us', aspect: 'h-[340px]' }
+    { id: 64, src: '/images/couple40.jpg', category: 'Just the two of us', aspect: 'h-[340px]' },
+    { id: 65, src: '/images/cw1.jpg', category: 'Pre-Wedding', aspect: 'h-[340px]' },
+    { id: 66, src: '/images/cw2.jpg', category: 'Pre-Wedding', aspect: 'h-[340px]' },
+    { id: 67, src: '/images/cw3.jpg', category: 'Pre-Wedding', aspect: 'h-[340px]' },
+    { id: 68, src: '/images/cw4.jpg', category: 'Pre-Wedding', aspect: 'h-[340px]' },
+    { id: 69, src: '/images/cw5.jpg', category: 'Pre-Wedding', aspect: 'h-[340px]' },
+    { id: 70, src: '/images/cw6.jpg', category: 'Pre-Wedding', aspect: 'h-[340px]' },
+    { id: 71, src: '/images/cw7.jpg', category: 'Pre-Wedding', aspect: 'h-[340px]' },
+    { id: 72, src: '/images/cw8.jpg', category: 'Pre-Wedding', aspect: 'h-[340px]' },
+    { id: 73, src: '/images/cw9.jpg', category: 'Pre-Wedding', aspect: 'h-[340px]' },
+    { id: 74, src: '/images/cw10.jpg', category: 'Pre-Wedding', aspect: 'h-[340px]' },
+    { id: 75, src: '/images/cw11.jpg', category: 'Pre-Wedding', aspect: 'h-[340px]' },
+    { id: 76, src: '/images/cw12.jpg', category: 'Pre-Wedding', aspect: 'h-[340px]' },
+    { id: 77, src: '/images/cw13.jpg', category: 'Pre-Wedding', aspect: 'h-[340px]' },
+    { id: 78, src: '/images/cw14.jpg', category: 'Pre-Wedding', aspect: 'h-[340px]' },
+    { id: 79, src: '/images/cw15.jpg', category: 'Pre-Wedding', aspect: 'h-[340px]' },
+    { id: 80, src: '/images/cw16.jpg', category: 'Pre-Wedding', aspect: 'h-[340px]' },
+    { id: 81, src: '/images/cw17.jpg', category: 'Pre-Wedding', aspect: 'h-[340px]' },
+    { id: 82, src: '/images/cw18.jpg', category: 'Pre-Wedding', aspect: 'h-[340px]' },
+    { id: 83, src: '/images/cw19.jpg', category: 'Pre-Wedding', aspect: 'h-[340px]' },
+
   ];
 
   const filteredItems = selectedCategory === 'All Memories'
@@ -160,8 +180,8 @@ export const Gallery: React.FC = () => {
                   setIsExpanded(false); // Reset configuration logic to initial limit
                 }}
                 className={`px-4 py-2 text-xs uppercase tracking-wider font-semibold rounded-lg transition-all duration-300 flex items-center space-x-2 border ${isSelected
-                    ? 'bg-stone-900 border-stone-900 text-white dark:bg-stone-100 dark:border-stone-100 dark:text-neutral-900'
-                    : 'bg-stone-100 border-stone-200 text-stone-600 dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-400'
+                  ? 'bg-stone-900 border-stone-900 text-white dark:bg-stone-100 dark:border-stone-100 dark:text-neutral-900'
+                  : 'bg-stone-100 border-stone-200 text-stone-600 dark:bg-neutral-900 dark:border-neutral-800 dark:text-neutral-400'
                   }`}
               >
                 {category === 'All Memories' ? <Layers size={12} /> : <Camera size={12} />}
@@ -170,8 +190,8 @@ export const Gallery: React.FC = () => {
                 {/* Dynamically Styled Counter Badge */}
                 <span
                   className={`text-[10px] ml-1 px-1.5 py-0.5 rounded-full font-bold transition-colors duration-300 ${isSelected
-                      ? 'bg-white text-stone-900 dark:bg-neutral-900 dark:text-stone-100'
-                      : 'bg-stone-200 text-stone-700 dark:bg-neutral-800 dark:text-neutral-300'
+                    ? 'bg-white text-stone-900 dark:bg-neutral-900 dark:text-stone-100'
+                    : 'bg-stone-200 text-stone-700 dark:bg-neutral-800 dark:text-neutral-300'
                     }`}
                 >
                   {getCategoryCount(category)}
