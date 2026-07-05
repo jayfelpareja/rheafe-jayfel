@@ -113,42 +113,78 @@ export const Details: React.FC = () => {
               <span className="font-sans text-[10px] uppercase tracking-widest text-stone-400 dark:text-stone-500">Map</span>
             </div>
 
-            {/* Custom SVG Map Illustration */}
+            {/* Custom SVG Map Illustration - Geographically styled for QC */}
             <div className="flex-1 min-h-[300px] flex items-center justify-center p-6 bg-stone-50/50 dark:bg-charcoal-950/20 relative">
 
-              {/* Sea Overlay */}
-              <div className="absolute top-4 left-4 font-serif italic text-xs text-stone-300 dark:text-stone-700 select-none">
-                Quezon Memorial Circle
-              </div>
-
               <svg viewBox="0 0 400 300" className="w-full max-w-[340px] h-auto text-stone-400 dark:text-stone-700 select-none">
-                {/* Landmass Contour Path */}
+                
+                {/* --- ROADS & LANDMARKS --- */}
+                
+                {/* EDSA (Major Highway curving on the left) */}
                 <path
-                  d="M 50,0 Q 80,100 120,120 T 260,180 T 350,220 T 400,230 L 400,300 L 0,300 L 0,0 Z"
+                  d="M 60,0 Q 100,150 50,300"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeDasharray="4 4"
+                  strokeWidth="6"
+                  className="opacity-20 dark:opacity-40"
                 />
 
-                {/* Major Roads / Connecting Line */}
+                {/* Elliptical Road / Quezon Memorial Circle */}
+                <circle 
+                  cx="260" 
+                  cy="150" 
+                  r="26" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2.5" 
+                  className="opacity-30 dark:opacity-50" 
+                />
+                <circle cx="260" cy="150" r="18" fill="currentColor" className="opacity-10 dark:opacity-20" />
+                <text x="260" y="153" textAnchor="middle" className="font-sans text-[7px] tracking-widest fill-stone-500 dark:fill-stone-400 uppercase">
+                  Quezon Memorial Circle
+                </text>
+
+                {/* North Avenue */}
                 <path
-                  d="M 120,120 C 160,125 210,140 250,185"
+                  d="M 242,131 Q 170,95 90,82"
                   fill="none"
-                  stroke="var(--color-blush-200)"
+                  stroke="currentColor"
                   strokeWidth="2.5"
-                  className="opacity-70 dark:opacity-30"
-                />
-                <path
-                  d="M 120,120 Q 90,140 70,220"
-                  fill="none"
-                  stroke="var(--color-blush-200)"
-                  strokeWidth="2"
-                  className="opacity-70 dark:opacity-30"
+                  className="opacity-30 dark:opacity-50"
                 />
 
-                {/* Point 1:  Cris & Charms Events */}
-                <g transform="translate(120, 120)">
+                {/* Quezon Avenue */}
+                <path
+                  d="M 240,167 Q 160,205 75,250"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  className="opacity-30 dark:opacity-50"
+                />
+
+                {/* Kalayaan Avenue */}
+                <path
+                  d="M 252,175 Q 235,215 210,300"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className="opacity-30 dark:opacity-50"
+                />
+
+                {/* Driving Route / Connection Line - Updated to follow roads *through* the Circle */}
+                <path
+                  d="M 230 230 L 252 175 A 26 26 0 0 1 242 131 L 170 95 L 90 82 L 75 70 L 70 70"
+                  fill="none"
+                  stroke="#d4af37" /* Gold accent line */
+                  strokeWidth="2"
+                  strokeDasharray="4 4"
+                  className="opacity-70 dark:opacity-60"
+                />
+
+                {/* --- LOCATIONS --- */}
+
+                {/* Point 1: Cris & Charms Events (Kalayaan Ave) */}
+                <g transform="translate(230, 230)">
                   <circle r="6" className="fill-gold-300 dark:fill-gold-200 animate-ping opacity-60" />
                   <circle r="4" className="fill-gold-300 dark:fill-gold-200" />
                   <text x="12" y="4" className="font-serif text-[11px] font-medium fill-stone-800 dark:fill-stone-200">
@@ -159,30 +195,30 @@ export const Details: React.FC = () => {
                   </text>
                 </g>
 
-                {/* Point 2: The Grass Residences */}
-                <g transform="translate(250, 185)">
+                {/* Point 2: The Grass Residences (Behind SM North) */}
+                <g transform="translate(70, 70)">
                   <circle r="6" className="fill-gold-300 dark:fill-gold-200 animate-ping opacity-60" />
                   <circle r="4" className="fill-gold-300 dark:fill-gold-200" />
-                  <text x="12" y="4" className="font-serif text-[11px] font-medium fill-stone-800 dark:fill-stone-200">
+                  <text x="12" y="-2" className="font-serif text-[11px] font-medium fill-stone-800 dark:fill-stone-200">
                     The Grass Residences
                   </text>
-                  <text x="12" y="14" className="font-sans text-[8px] tracking-wider fill-stone-400 dark:fill-stone-500 uppercase">
+                  <text x="12" y="8" className="font-sans text-[8px] tracking-wider fill-stone-400 dark:fill-stone-500 uppercase">
                     Reception
                   </text>
                 </g>
 
-                {/* Point 3: Sorrento Marina Landmark */}
-                <g transform="translate(70, 220)" className="opacity-60">
-                  <circle r="3" className="fill-stone-400 dark:fill-stone-600" />
-                  <text x="10" y="3" className="font-sans text-[9px] fill-stone-500 dark:fill-stone-500">
-                    SM City North EDSA
+                {/* Point 3: SM City North EDSA Landmark */}
+                <g transform="translate(95, 95)" className="opacity-70">
+                  <rect x="-4" y="-4" width="8" height="8" rx="1" className="fill-stone-300 dark:fill-stone-600" />
+                  <text x="8" y="12" className="font-sans text-[8px] font-medium fill-stone-500 dark:fill-stone-400">
+                    SM North EDSA
                   </text>
                 </g>
               </svg>
 
               {/* Compass Indicator */}
               <div className="absolute bottom-6 right-6 flex flex-col items-center">
-                <div className="w-8 h-8 rounded-full border border-stone-200 dark:border-charcoal-800 flex items-center justify-center text-gold-300 font-serif text-[10px] font-semibold">
+                <div className="w-8 h-8 rounded-full border border-stone-200 dark:border-charcoal-800 flex items-center justify-center text-gold-300 font-serif text-[10px] font-semibold bg-white dark:bg-charcoal-900">
                   N
                 </div>
                 <div className="w-[1px] h-3 bg-stone-300 dark:bg-charcoal-800 mt-1" />
@@ -193,7 +229,7 @@ export const Details: React.FC = () => {
             <div className="px-8 py-5 border-t border-stone-100 dark:border-charcoal-800 bg-stone-50/50 dark:bg-charcoal-900/50 flex flex-col sm:flex-row sm:items-center sm:justify-between text-xs text-stone-500 dark:text-stone-400 font-sans">
               <span>✈ NAIA Terminal 3 ~ 2hrs drive</span>
               <a
-                href="https://www.google.com/maps/place/Grass+residences+tower+4+staycation/@14.6603355,121.0256205,17z/data=!4m15!1m8!3m7!1s0x3397b6e3f6caf50b:0x4aef124a009a5652!2sThe+Grass+Residences,+Santo+Cristo,+Bago+Bantay,+Quezon+City,+Metro+Manila!3b1!8m2!3d14.6603303!4d121.0281954!16s%2Fg%2F11cn8s89tq!3m5!1s0x3397b74618ed1bb5:0x278ffab2ab832cd1!8m2!3d14.6591661!4d121.027014!16s%2Fg%2F11s7yw2mt3?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D"
+                href="https://www.google.com/maps/place/Cris+%26+Charms+Events+Management/@14.6469172,121.0498611,17z/data=!3m1!4b1!4m6!3m5!1s0x3397b75f780f2233:0x4e74edce76c10857!8m2!3d14.646912!4d121.052436!16s%2Fg%2F11vqsc0t0j?entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gold-400 dark:text-gold-300 font-semibold hover:underline mt-2 sm:mt-0"
