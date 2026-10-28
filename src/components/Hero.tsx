@@ -240,7 +240,7 @@ export const Hero: React.FC = () => {
           className="flex items-center space-x-2 text-gold-200 uppercase tracking-widest text-xs md:text-sm font-semibold mb-6 bg-black/40 backdrop-blur-md px-5 py-2 rounded-full border border-white/15 shadow-lg shadow-black/20"
         >
           <Heart size={14} className="text-gold-300 animate-pulse-slow fill-current" />
-          <span>Just Married • April 25, 2026</span>
+          <span>April 25, 2026</span>
         </motion.div>
 
         {/* Title */}
