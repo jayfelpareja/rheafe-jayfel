@@ -162,7 +162,7 @@ export const Gallery: React.FC = () => {
           </div>
 
           <p className="font-sans text-sm text-stone-500 dark:text-neutral-400 max-w-xs md:text-right italic">
-            A simple collection of our most cherished memories. Tap any moment to relive it in full screen.
+            A simple collection of our most cherished memories together as lovers.
           </p>
         </div>
 

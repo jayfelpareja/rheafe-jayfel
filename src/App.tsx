@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { OurStory } from './components/OurStory';
+
 import { Gallery } from './components/Gallery';
 import { VideoPlayer } from './components/VideoPlayer';
 import { LoveNotes } from './components/LoveNotes';
