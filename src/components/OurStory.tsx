@@ -24,40 +24,44 @@ export const OurStory: React.FC = () => {
     seconds: 0,
   });
 
-  const milestones: Milestone[] = [
-    {
-      title: 'First Meeting',
-      date: 'December 27, 2020',
-      icon: <Coffee className="w-5 h-5 text-gold-300" />,
-      description: 'It was our first meeting and first date at the same time, as we were in a long-distance relationship and finally managed to see each other in person.',
-      image: '/images/first_meet.jpg',
-      placeholderText: 'First Meeting',
-    },
-    {
-      title: 'The Proposal',
-      date: 'February 26, 2026',
-      icon: <Compass className="w-5 h-5 text-gold-300" />,
-      description: 'It was an unexpected proposal when Jayfel surprised Rheafe with a ring and asked her to be his wife forever during his 26th birthday celebration in the evening.',
-      image: '/images/proposal.jpg',
-      placeholderText: 'The Proposal',
-    },
-    {
-      title: 'Engagement Dinner',
-      date: 'February 26, 2026',
-      icon: <Gem className="w-5 h-5 text-gold-300" />,
-      description: 'Since Jayfel and Rheafe live far apart in Mindanao, they celebrated their engagement privately as a couple while planning a simple elopement wedding together.',
-      image: '/images/proposal-dinner.jpg',
-      placeholderText: 'Engagement Dinner',
-    },
-    {
-      title: 'Elopement Wedding',
-      date: 'April 25, 2026',
-      icon: <Heart className="w-5 h-5 text-gold-300" />,
-      description: 'The ceremony was held only with the bride and groom, and they were blessed by a reverend pastor, with their families aware of their marriage and commitment.',
-      image: '/images/DSCF1154.jpg',
-      placeholderText: 'Wedding Day',
-    },
-  ];
+const milestones: Milestone[] = [
+  {
+    title: 'Their First Meeting',
+    date: 'December 27, 2020',
+    icon: <Coffee className="w-5 h-5 text-gold-300" />,
+    description:
+      'After growing close through a long-distance relationship, the day Jayfel and Rheafe had been waiting for finally arrived. On December 27, 2020, they met in person for the very first time—and their first meeting became their first date, too. It was a beautiful moment when two hearts that had found each other from afar finally came together. That day marked the beginning of countless memories and a love that would continue to grow with every passing day.',
+    image: '/images/first_meet.jpg',
+    placeholderText: 'Their First Meeting',
+  },
+  {
+    title: 'The Proposal',
+    date: 'February 26, 2026',
+    icon: <Compass className="w-5 h-5 text-gold-300" />,
+    description:
+      'On the evening of Jayfel’s 26th birthday, Rheafe received a surprise she would never forget. With a ring in hand and a heart full of love, Jayfel asked Rheafe to spend the rest of her life with him. What began as an ordinary birthday celebration became a life-changing moment—a promise to keep choosing each other, to face every challenge together, and to build a future rooted in love and commitment.',
+    image: '/images/proposal.jpg',
+    placeholderText: 'The Proposal',
+  },
+  {
+    title: 'Their Engagement Dinner',
+    date: 'February 26, 2026',
+    icon: <Gem className="w-5 h-5 text-gold-300" />,
+    description:
+      'With hearts full of happiness, Jayfel and Rheafe celebrated their engagement in a simple and intimate way. Though distance had separated them in Mindanao, their love had always found a way to bring them closer. That evening, they shared more than a special meal—they shared their dreams of building a life together and planning a simple elopement wedding. It was a quiet but meaningful celebration of a love that meant everything to them and a future they were ready to embrace together.',
+    image: '/images/proposal-dinner.jpg',
+    placeholderText: 'Their Engagement Dinner',
+  },
+  {
+    title: 'Their Wedding Day',
+    date: 'April 25, 2026',
+    icon: <Heart className="w-5 h-5 text-gold-300" />,
+    description:
+      'On April 25, 2026, Jayfel and Rheafe became husband and wife in a simple, intimate ceremony with only the two of them present. With the blessing of a reverend pastor and their families aware of their commitment, they began a beautiful new chapter together. It was not a grand celebration surrounded by a crowd, but a deeply meaningful promise before God to love, cherish, and stand by each other through every season of life. Their wedding was a reminder that a marriage is not defined by the size of its celebration, but by the love, faith, and commitment shared by two hearts. And so, Jayfel and Rheafe began their forever.',
+    image: '/images/DSCF1154.jpg',
+    placeholderText: 'Their Wedding Day',
+  },
+];
 
   useEffect(() => {
     const calculateTime = () => {
@@ -190,9 +194,9 @@ export const OurStory: React.FC = () => {
                     </div>
                   </div>
 
-                  <p className="text-xs leading-relaxed text-stone-500 dark:text-neutral-400 font-sans">
-                    {item.description}
-                  </p>
+                 <p className="text-xs leading-relaxed text-left text-stone-500 dark:text-neutral-400 font-sans">
+                  {item.description}
+                </p>
                 </div>
               </motion.div>
             ))}
@@ -208,7 +212,7 @@ export const OurStory: React.FC = () => {
             className="flex flex-col items-center text-center"
           >
             <span className="text-[11px] uppercase tracking-widest text-stone-500 dark:text-neutral-400 font-bold mb-4 bg-stone-100 dark:bg-neutral-900 px-4 py-1.5 rounded-full border border-stone-200/60 dark:border-neutral-800">
-              Girlfriend & BoyfriendJourney
+              Girlfriend & Boyfriend Journey
             </span>
             <h3 className="font-serif text-2xl md:text-3xl text-stone-900 dark:text-stone-100 tracking-tight mb-10">
               Our Journey Since Day One
